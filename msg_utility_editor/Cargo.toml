@@ -9,7 +9,7 @@ edition = "2024"
 authors = ["ffmulks <63452434+ffmulks@users.noreply.github.com>"]
 description = "Node-graph editor for msg_utility_ai scoring trees"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/MolecularSadism/msg_utility_editor"
+repository = "https://github.com/MolecularSadism/msg_utility_ai"
 publish = false
 
 [[bin]]
