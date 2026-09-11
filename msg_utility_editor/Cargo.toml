@@ -1,0 +1,49 @@
+# Standalone dev tool: its own workspace root, with its own lockfile and target dir, so
+# it never joins msg_utility_ai's build graph (or any consumer's, e.g. gravitaria's).
+[workspace]
+
+[package]
+name = "msg_utility_editor"
+version = "0.1.0"
+edition = "2024"
+authors = ["ffmulks <63452434+ffmulks@users.noreply.github.com>"]
+description = "Node-graph editor for msg_utility_ai scoring trees"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/MolecularSadism/msg_utility_editor"
+publish = false
+
+[[bin]]
+name = "msg_utility_editor"
+path = "src/main.rs"
+
+[dependencies]
+bevy = { version = "0.18", default-features = false, features = [
+    "ui",
+    "bevy_asset",
+    "bevy_color",
+    "bevy_core_pipeline",
+    "bevy_image",
+    "bevy_picking",
+    "bevy_render",
+    "bevy_state",
+    "bevy_winit",
+    "multi_threaded",
+    "png",
+    "x11",
+] }
+bevy-inspector-egui = "0.36"
+egui-snarl = { version = "0.9", features = ["serde"] }
+egui-phosphor = "0.11"
+msg_utility_ai = { path = "../msg_utility_ai" }
+serde = { version = "1.0.219", features = ["derive"] }
+ron = "0.12"
+serde_json = "1.0"
+rfd = "0.17.2"
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ["cfg(bevy_lint)"] }
+
+[lints.clippy]
+too_many_arguments = "allow"
+type_complexity = "allow"
+nonstandard_macro_braces = "warn"

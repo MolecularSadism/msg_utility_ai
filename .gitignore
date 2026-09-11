@@ -1,0 +1,12 @@
+# Build artifacts
+/target/
+/msg_utility_editor/target/
+
+# msg_utility_ai is a library: don't commit the workspace root's resolved lockfile.
+/Cargo.lock
+
+# msg_utility_editor is a binary tool: its own Cargo.lock (committed) is unaffected by the rule above.
+
+# Hidden configs
+.*/
+!.github/
