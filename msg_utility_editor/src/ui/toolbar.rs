@@ -5,8 +5,8 @@ use crate::document::EditorDocument;
 use crate::graph::{EditorNode, graph_to_profile, profile_to_graph};
 use crate::io;
 
-pub fn show(ctx: &egui::Context, doc: &mut EditorDocument) {
-    egui::TopBottomPanel::top("toolbar").show(ctx, |ui| {
+pub fn show(root_ui: &mut egui::Ui, doc: &mut EditorDocument) {
+    egui::Panel::top("toolbar").show_inside(root_ui, |ui| {
         egui::MenuBar::new().ui(ui, |ui| {
             ui.menu_button("File", |ui| {
                 ui.set_min_width(120.0);

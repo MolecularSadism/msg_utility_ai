@@ -17,7 +17,7 @@ name = "msg_utility_editor"
 path = "src/main.rs"
 
 [dependencies]
-bevy = { version = "0.18", default-features = false, features = [
+bevy = { version = "0.19", default-features = false, features = [
     "ui",
     "bevy_asset",
     "bevy_color",
@@ -31,11 +31,11 @@ bevy = { version = "0.18", default-features = false, features = [
     "png",
     "x11",
 ] }
-bevy-inspector-egui = "0.36"
-egui-snarl = { version = "0.9", features = ["serde"] }
-egui-phosphor = "0.11"
+bevy-inspector-egui = "0.37"
+egui-snarl = { version = "0.10", features = ["serde"] }
+egui-phosphor = "0.12"
 msg_utility_ai = { path = "../msg_utility_ai" }
-serde = { version = "1.0.219", features = ["derive"] }
+serde = { version = "1.0.229", features = ["derive"] }
 ron = "0.12"
 serde_json = "1.0"
 rfd = "0.17.2"

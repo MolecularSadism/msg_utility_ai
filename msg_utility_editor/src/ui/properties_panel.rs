@@ -17,7 +17,7 @@ pub fn show(ui: &mut egui::Ui, doc: &mut EditorDocument) {
         egui::Frame::new()
             .fill(egui::Color32::from_rgb(40, 60, 40))
             .stroke(egui::Stroke::new(
-                1.0,
+                1.0_f32,
                 egui::Color32::from_rgb(100, 180, 100),
             ))
             .corner_radius(egui::CornerRadius::same(6))

@@ -67,7 +67,7 @@ fn draw_curve_plot(ui: &mut egui::Ui, curve: &ResponseCurve, input_value: Option
     painter.rect_stroke(
         rect,
         2.0,
-        egui::Stroke::new(1.0, egui::Color32::from_gray(50)),
+        egui::Stroke::new(1.0_f32, egui::Color32::from_gray(50)),
         egui::StrokeKind::Inside,
     );
 
@@ -88,7 +88,7 @@ fn draw_curve_plot(ui: &mut egui::Ui, curve: &ResponseCurve, input_value: Option
         let color = lerp_color(prev_x);
         painter.line_segment(
             [to_screen(prev_x, prev_y), to_screen(t, y)],
-            egui::Stroke::new(2.0, color),
+            egui::Stroke::new(2.0_f32, color),
         );
         prev_x = t;
         prev_y = y;
@@ -103,7 +103,7 @@ fn draw_curve_plot(ui: &mut egui::Ui, curve: &ResponseCurve, input_value: Option
         let line_color = egui::Color32::from_rgba_premultiplied(255, 255, 255, 60);
         painter.line_segment(
             [to_screen(input, output), to_screen(1.0, output)],
-            egui::Stroke::new(1.5, line_color),
+            egui::Stroke::new(1.5_f32, line_color),
         );
 
         // Dot on the curve at (input, output)
@@ -111,7 +111,7 @@ fn draw_curve_plot(ui: &mut egui::Ui, curve: &ResponseCurve, input_value: Option
         painter.circle_stroke(
             to_screen(input, output),
             4.0,
-            egui::Stroke::new(1.0, egui::Color32::from_gray(40)),
+            egui::Stroke::new(1.0_f32, egui::Color32::from_gray(40)),
         );
 
         // Dot at x = 1.0 showing the final output
@@ -119,7 +119,7 @@ fn draw_curve_plot(ui: &mut egui::Ui, curve: &ResponseCurve, input_value: Option
         painter.circle_stroke(
             to_screen(1.0, output),
             3.5,
-            egui::Stroke::new(1.0, egui::Color32::from_gray(40)),
+            egui::Stroke::new(1.0_f32, egui::Color32::from_gray(40)),
         );
     }
 }
@@ -128,7 +128,7 @@ fn input_pin(node: &EditorNode, connected_color: Option<egui::Color32>) -> PinIn
     match connected_color {
         Some(c) => PinInfo::circle()
             .with_fill(egui::Color32::from_gray(80))
-            .with_stroke(egui::Stroke::new(2.0, c)),
+            .with_stroke(egui::Stroke::new(2.0_f32, c)),
         None => {
             let border = match node {
                 EditorNode::Behavior { .. } => PIN_COLOR_BEHAVIOR,
@@ -136,7 +136,7 @@ fn input_pin(node: &EditorNode, connected_color: Option<egui::Color32>) -> PinIn
             };
             PinInfo::circle()
                 .with_fill(egui::Color32::WHITE)
-                .with_stroke(egui::Stroke::new(2.0, border))
+                .with_stroke(egui::Stroke::new(2.0_f32, border))
         }
     }
 }
@@ -145,7 +145,7 @@ fn output_pin(node: &EditorNode) -> PinInfo {
     let color = node.header_color();
     PinInfo::circle()
         .with_fill(color)
-        .with_stroke(egui::Stroke::new(1.0, egui::Color32::from_gray(140)))
+        .with_stroke(egui::Stroke::new(1.0_f32, egui::Color32::from_gray(140)))
 }
 
 pub struct EditorViewer {
