@@ -11,7 +11,7 @@ A utility AI evaluation library and its standalone node-graph profile editor, ex
 ## Using `msg_utility_ai` in another project
 
 ```toml
-msg_utility_ai = { git = "https://github.com/MolecularSadism/msg_utility_ai", tag = "v0.1.0" }
+msg_utility_ai = { git = "https://github.com/MolecularSadism/msg_utility_ai", tag = "v0.2.0" }
 ```
 
 `msg_utility_editor` is a dev tool only — it is not meant to be depended on.

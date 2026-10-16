@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use bevy_inspector_egui::bevy_egui::{self, EguiContexts, EguiPrimaryContextPass};
+use bevy_inspector_egui::bevy_egui::{self, EguiContexts, EguiPrimaryContextPass, egui};
 use egui_phosphor::add_to_fonts;
 
 use crate::document::EditorDocument;
@@ -34,18 +34,26 @@ fn ui_system(mut contexts: EguiContexts, mut doc: ResMut<EditorDocument>) {
         return;
     };
 
-    toolbar::show(ctx, &mut doc);
+    let mut root_ui = egui::Ui::new(
+        ctx.clone(),
+        egui::Id::new("editor_root"),
+        egui::UiBuilder::new()
+            .layer_id(egui::LayerId::background())
+            .max_rect(ctx.content_rect()),
+    );
 
-    bevy_egui::egui::SidePanel::right("properties_panel")
+    toolbar::show(&mut root_ui, &mut doc);
+
+    egui::Panel::right("properties_panel")
         .resizable(true)
-        .default_width(280.0)
-        .show(ctx, |ui| {
+        .default_size(280.0)
+        .show_inside(&mut root_ui, |ui| {
             properties_panel::show(ui, &mut doc);
             ui.separator();
             simulation_panel::show(ui, &mut doc);
         });
 
-    bevy_egui::egui::CentralPanel::default().show(ctx, |ui| {
+    egui::CentralPanel::default().show_inside(&mut root_ui, |ui| {
         tree_editor::show(ui, &mut doc);
     });
 }
