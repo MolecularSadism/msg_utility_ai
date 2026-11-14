@@ -106,7 +106,8 @@ impl Plugin for UtilityAiPlugin {
 }
 
 /// Counts down one phase slice of the rethink interval.
-#[derive(Resource, Debug)]
+#[derive(Resource, Reflect, Debug)]
+#[reflect(Resource)]
 struct AiPhaseTimer(Timer);
 
 /// Runs [`UtilityAiSchedule`] once per phase slice.

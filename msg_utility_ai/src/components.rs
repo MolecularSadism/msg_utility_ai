@@ -30,9 +30,11 @@ impl Consideration {
 /// The action selected by the AI evaluation, or `None` if no behavior won.
 ///
 /// Updated each tick by the plugin's evaluation system.
-#[derive(Component, Debug, Clone)]
+#[derive(Component, Reflect, Debug, Clone)]
+#[reflect(Component)]
 pub struct CurrentAction(pub Option<ActionId>);
 
 /// Handle to a loaded [`UtilityAIProfile`] asset.
-#[derive(Component, Debug, Clone, Deref)]
+#[derive(Component, Reflect, Debug, Clone, Deref)]
+#[reflect(Component)]
 pub struct AiProfile(pub Handle<UtilityAIProfile>);
