@@ -4,7 +4,7 @@
 //! apply its [`PickStrategy`]. [`pick`] reports every behavior's score for
 //! debug views; [`pick_action`] returns only the winner and allocates nothing.
 
-use std::collections::HashMap;
+use bevy::platform::collections::HashMap;
 
 use serde::{Deserialize, Serialize};
 
@@ -39,7 +39,7 @@ pub enum PickStrategy {
 /// ```
 /// use msg_utility_ai::*;
 /// use msg_utility_ai::picker::{PickStrategy, pick};
-/// use std::collections::HashMap;
+/// use bevy::platform::collections::HashMap;
 ///
 /// let profile = UtilityAIProfile {
 ///     threshold: 0.5,
@@ -116,7 +116,7 @@ pub fn pick(
 /// ```
 /// use msg_utility_ai::*;
 /// use msg_utility_ai::picker::{PickStrategy, pick_action};
-/// use std::collections::HashMap;
+/// use bevy::platform::collections::HashMap;
 ///
 /// let profile = UtilityAIProfile {
 ///     threshold: 0.5,
