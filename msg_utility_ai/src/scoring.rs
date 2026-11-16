@@ -5,7 +5,8 @@
 //! topologically sorts them so a composite may build on another and reports a
 //! [`CompositeError::Cycle`] when they refer back to each other.
 
-use std::collections::{HashMap, HashSet, VecDeque};
+use bevy::platform::collections::{HashMap, HashSet};
+use std::collections::VecDeque;
 use std::fmt;
 
 use serde::{Deserialize, Serialize};
@@ -113,7 +114,7 @@ impl ResponseCurve {
 ///     ScoreNode::Not(Box::new(ScoreNode::Consider(ConsiderationId::new("in_attack_range")))),
 /// ]);
 ///
-/// let mut values = std::collections::HashMap::new();
+/// let mut values = bevy::platform::collections::HashMap::new();
 /// values.insert(ConsiderationId::new("has_target"), 1.0);
 /// values.insert(ConsiderationId::new("in_attack_range"), 0.3);
 ///
@@ -358,7 +359,7 @@ impl fmt::Display for CompositeError {
 /// ```
 /// use msg_utility_ai::*;
 /// use msg_utility_ai::scoring::resolve_composites;
-/// use std::collections::HashMap;
+/// use bevy::platform::collections::HashMap;
 ///
 /// let composites = vec![
 ///     CompositeConsiderationDef {
@@ -478,7 +479,7 @@ pub struct EvaluationResult {
 ///
 /// ```
 /// use msg_utility_ai::*;
-/// use std::collections::HashMap;
+/// use bevy::platform::collections::HashMap;
 ///
 /// let profile = UtilityAIProfile {
 ///     threshold: 0.5,

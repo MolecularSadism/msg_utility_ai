@@ -1,7 +1,7 @@
 //! The three components an AI agent carries: its sensor readings, its profile
 //! handle, and the action evaluation picked for it.
 
-use std::collections::HashMap;
+use bevy::platform::collections::HashMap;
 
 use bevy::prelude::*;
 
@@ -14,7 +14,8 @@ use crate::config::{ActionId, ConsiderationId, UtilityAIProfile};
 ///
 /// Use [`Consideration::set`] to insert values with automatic [`Observable`](crate::Observable)
 /// conversion — accepts `bool`, `f32`, or `f64`.
-#[derive(Component, Default, Debug, Clone, Deref, DerefMut)]
+#[derive(Component, Reflect, Default, Debug, Clone, Deref, DerefMut)]
+#[reflect(Component, Default, Debug, Clone)]
 pub struct Consideration(pub HashMap<ConsiderationId, f32>);
 
 impl Consideration {
@@ -38,3 +39,20 @@ pub struct CurrentAction(pub Option<ActionId>);
 #[derive(Component, Reflect, Debug, Clone, Deref)]
 #[reflect(Component)]
 pub struct AiProfile(pub Handle<UtilityAIProfile>);
+
+#[cfg(test)]
+mod tests {
+    use bevy::reflect::FromReflect;
+
+    use super::*;
+
+    #[test]
+    fn consideration_rebuilds_from_reflection() {
+        let mut consideration = Consideration::default();
+        consideration.set(ConsiderationId::new("has_target"), true);
+
+        let rebuilt = Consideration::from_reflect(consideration.as_partial_reflect())
+            .expect("Consideration rebuilds from its reflection");
+        assert_eq!(rebuilt.0, consideration.0);
+    }
+}
