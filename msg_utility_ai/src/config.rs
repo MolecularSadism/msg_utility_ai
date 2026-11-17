@@ -265,4 +265,34 @@ mod tests {
         let behavior: BehaviorDef = ron::from_str(ron_str).unwrap();
         assert_eq!(behavior.action, ActionId::new("Chase"));
     }
+
+    #[test]
+    fn ids_deserialize_from_a_string_through_the_type_registry() {
+        use bevy::reflect::{FromReflect, ReflectDeserialize, TypeRegistry};
+        use serde::de::value::{Error, StrDeserializer};
+
+        let mut registry = TypeRegistry::default();
+        registry.register::<ConsiderationId>();
+        registry.register::<ActionId>();
+
+        let consideration = registry
+            .get_type_data::<ReflectDeserialize>(std::any::TypeId::of::<ConsiderationId>())
+            .expect("ConsiderationId registers ReflectDeserialize")
+            .deserialize(StrDeserializer::<Error>::new("has_target"))
+            .expect("a string deserializes into a ConsiderationId");
+        assert_eq!(
+            ConsiderationId::from_reflect(consideration.as_ref()),
+            Some(ConsiderationId::new("has_target"))
+        );
+
+        let action = registry
+            .get_type_data::<ReflectDeserialize>(std::any::TypeId::of::<ActionId>())
+            .expect("ActionId registers ReflectDeserialize")
+            .deserialize(StrDeserializer::<Error>::new("Chase"))
+            .expect("a string deserializes into an ActionId");
+        assert_eq!(
+            ActionId::from_reflect(action.as_ref()),
+            Some(ActionId::new("Chase"))
+        );
+    }
 }

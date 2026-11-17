@@ -1056,8 +1056,8 @@ dependencies = [
 
 [[package]]
 name = "bevy_interned_id"
-version = "0.6.0"
-source = "git+https://github.com/MolecularSadism/bevy_interned_id?tag=v0.6.0#02ce9616e03d359e6f48e3acc5065a24149eebbd"
+version = "0.7.0"
+source = "git+https://github.com/MolecularSadism/bevy_interned_id?tag=v0.7.0#df8b5fbf880219d3703bede2eeda90c4e9b3619d"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -3511,7 +3511,7 @@ dependencies = [
 
 [[package]]
 name = "msg_utility_ai"
-version = "0.2.0"
+version = "0.4.0"
 dependencies = [
  "bevy",
  "bevy_interned_id",

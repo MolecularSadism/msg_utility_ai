@@ -1,6 +1,6 @@
 [package]
 name = "msg_utility_ai"
-version = "0.3.0"
+version = "0.4.0"
 edition = "2024"
 authors = ["ffmulks <63452434+ffmulks@users.noreply.github.com>"]
 description = "Utility AI evaluation library with data-driven scoring trees"
@@ -10,7 +10,7 @@ readme = "../README.md"
 
 [dependencies]
 bevy = { version = "0.19", default-features = false, features = ["bevy_asset"] }
-bevy_interned_id = { git = "https://github.com/MolecularSadism/bevy_interned_id", tag = "v0.6.0" }
+bevy_interned_id = { git = "https://github.com/MolecularSadism/bevy_interned_id", tag = "v0.7.0" }
 serde = { version = "1.0.229", features = ["derive"] }
 ron = "0.12"
 
